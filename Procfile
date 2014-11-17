@@ -1,1 +1,1 @@
-web: java -cp target/acton-service-1.0-SNAPSHOT.jar com.acton.Main
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.acton.Main
