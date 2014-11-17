@@ -1,0 +1,16 @@
+[{
+"id":"perm1",
+"name":"Can check balance"
+},
+{
+"id":"perm5",
+"name":"Can deposit"
+},
+{
+"id":"perm6",
+"name":"Can Transfer"
+},
+{
+"id":"perm7",
+"name":"Can withdraw"
+}]
