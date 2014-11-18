@@ -2,9 +2,7 @@ package com.acton;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -19,6 +17,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.acton.models.User;
+import com.acton.models.dto.PermissionList;
 import com.acton.services.Service;
 import com.acton.services.exception.DataNotFoundException;
 import com.acton.services.exception.RolesCannotBeEmpty;
@@ -115,14 +114,13 @@ public class MyResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("roles/{roleId}")
 	public Response modifyRole(@PathParam("roleId") String roleId,
-			Map<String, List<String>> permission) {
+			PermissionList permission) {
 		if (permission == null) {
 			return Response.noContent()
 					.entity("Permission Object cannot be null.").build();
 		}
 		try {
-			service.modifyPermissionListForRole(roleId,
-					(HashMap<String, List<String>>) permission);
+			service.modifyPermissionListForRole(roleId, permission);
 		} catch (DataNotFoundException e) {
 			return Response.status(Status.NOT_FOUND).entity("Role not found!")
 					.build();

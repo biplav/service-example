@@ -1,7 +1,6 @@
 package com.acton.services;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +9,7 @@ import com.acton.data.DataStore;
 import com.acton.models.Permission;
 import com.acton.models.Role;
 import com.acton.models.User;
+import com.acton.models.dto.PermissionList;
 import com.acton.services.exception.DataNotFoundException;
 import com.acton.services.exception.RolesCannotBeEmpty;
 import com.acton.services.exception.UserIdAlreadyExists;
@@ -73,11 +73,11 @@ public class Service implements IService {
 	}
 
 	@Override
-	public Boolean modifyPermissionListForRole(String roleId,HashMap<String,List<String>> permissionMap) throws DataNotFoundException {
+	public Boolean modifyPermissionListForRole(String roleId,PermissionList permissions) throws DataNotFoundException {
 		Role role = ds.getRole(roleId);
 		if(role == null) throw new DataNotFoundException();
-		if(!permissionMap.containsKey("permissions")) throw new DataNotFoundException(); //validate if permission exists
-		List<String> list = permissionMap.get("permissions");
+		if(permissions == null) throw new DataNotFoundException(); //validate if permission exists
+		List<String> list = permissions.permissions;
 		role.setPermissions(list);
 		return true;
 	}

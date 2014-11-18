@@ -72,6 +72,11 @@ public class DataStore implements IDataStore {
 				public Type getOwnerType() {
 					return null;
 				}
+
+				@Override
+				public String getTypeName() {
+					return null;
+				}
 			};
 			BufferedReader br = new BufferedReader(new FileReader(
 					"src/main/resources/" + filename));

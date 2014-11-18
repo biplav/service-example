@@ -1,9 +1,9 @@
 package com.acton.services;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.acton.models.User;
+import com.acton.models.dto.PermissionList;
 import com.acton.services.exception.DataNotFoundException;
 import com.acton.services.exception.RolesCannotBeEmpty;
 import com.acton.services.exception.UserIdAlreadyExists;
@@ -15,10 +15,6 @@ public interface IService {
 	
 	//Given user and permission, return boolean if entitled or not.
 	public Boolean checkPermission(String userId,String permssionId) throws DataNotFoundException;
-	
-	//Modify permissions of a role
-	public Boolean modifyPermissionListForRole(String roleId,
-			HashMap<String, List<String>> permissionMap) throws DataNotFoundException;
 
 	//Delete a permission
 	public Boolean deletePermission(String permissionId) throws DataNotFoundException;
@@ -28,6 +24,10 @@ public interface IService {
 	
 	//Create a new User
 	public List<String> createUser(User user) throws DataNotFoundException, UserIdAlreadyExists, RolesCannotBeEmpty;
+
+	//Modify permissions of a role
+	Boolean modifyPermissionListForRole(String roleId,
+			PermissionList permissions) throws DataNotFoundException;
 		
 
 
